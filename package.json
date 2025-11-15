@@ -1,0 +1,42 @@
+{
+  "name": "quick-next",
+  "version": "1.0.2",
+  "description": "Quick and customizable Next.js project scaffolding CLI tool with Turkish support",
+  "main": "index.js",
+  "bin": {
+    "quick-next": "./index.js"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "next",
+    "nextjs",
+    "scaffold",
+    "cli",
+    "create-next-app",
+    "boilerplate",
+    "generator",
+    "typescript",
+    "tailwind",
+    "turkish",
+    "türkçe"
+  ],
+  "author": "ibidi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibidi/quick-next.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ibidi/quick-next/issues"
+  },
+  "homepage": "https://github.com/ibidi/quick-next#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "chalk": "^4.1.2"
+  }
+}
