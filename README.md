@@ -169,7 +169,7 @@ MIT License - feel free to use this project for personal or commercial purposes.
 
 ### 👨‍💻 Author
 
-**İhsan Bakıdoğan (ibidi)**
+**İhsan Baki Doğan (ibidi)**
 
 - LinkedIn: [linkedin.com/in/ibidi](https://linkedin.com/in/ibidi)
 - Instagram: [instagram.com/ihsanbakidogann](https://instagram.com/ihsanbakidogann)
@@ -330,7 +330,7 @@ MIT Lisansı - bu projeyi kişisel veya ticari amaçlarla özgürce kullanabilir
 
 ### 👨‍💻 Geliştirici
 
-**İhsan Bakıdoğan (ibidi)**
+**İhsan Baki Doğan (ibidi)**
 
 - LinkedIn: [linkedin.com/in/ibidi](https://linkedin.com/in/ibidi)
 - Instagram: [instagram.com/ihsanbakidogann](https://instagram.com/ihsanbakidogann)
