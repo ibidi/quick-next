@@ -121,6 +121,18 @@ const questions = [
       { title: 'Hayır', value: false }
     ],
     initial: 0
+  },
+  {
+    type: 'select',
+    name: 'packageManager',
+    message: 'Hangi paket yöneticisini kullanacaksın?',
+    choices: [
+      { title: 'npm', value: 'npm' },
+      { title: 'yarn', value: 'yarn' },
+      { title: 'pnpm', value: 'pnpm' },
+      { title: 'bun', value: 'bun' }
+    ],
+    initial: 0
   }
 ];
 
@@ -161,8 +173,13 @@ async function createProject() {
   console.log(chalk.green.bold('\n✅ Proje başarıyla oluşturuldu!\n'));
   console.log(chalk.cyan('Başlamak için:'));
   console.log(chalk.white(`  cd ${answers.projectName}`));
-  console.log(chalk.white('  npm install'));
-  console.log(chalk.white('  npm run dev\n'));
+  
+  const pm = answers.packageManager || 'npm';
+  const installCmd = pm === 'npm' ? 'npm install' : pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm install' : 'bun install';
+  const devCmd = pm === 'npm' ? 'npm run dev' : pm === 'yarn' ? 'yarn dev' : pm === 'pnpm' ? 'pnpm dev' : 'bun dev';
+  
+  console.log(chalk.white(`  ${installCmd}`));
+  console.log(chalk.white(`  ${devCmd}\n`));
   
   if (answers.shadcn) {
     console.log(chalk.cyan('shadcn/ui komponent eklemek için:'));

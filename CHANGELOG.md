@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.7] - 2024-11-16
+
+### Added
+- Package manager selection (npm, yarn, pnpm, bun)
+- Dynamic install and dev commands based on selected package manager
+- Better user experience with personalized instructions
+
+### Changed
+- Installation instructions now match selected package manager
+
 ## [1.0.6] - 2024-11-16
 
 ### Added
