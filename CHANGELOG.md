@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.6] - 2024-11-16
+
+### Added
+- Git repository initialization option
+- Automatic initial commit when Git is initialized
+- Git availability check with graceful fallback
+
+### Changed
+- Improved project setup flow with Git integration
+
 ## [1.0.5] - 2024-11-16
 
 ### Added

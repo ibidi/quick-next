@@ -111,6 +111,16 @@ const questions = [
       { title: 'Hayır', value: false }
     ],
     initial: 0
+  },
+  {
+    type: 'select',
+    name: 'initGit',
+    message: 'Git repository başlatmak ister misin?',
+    choices: [
+      { title: 'Evet', value: true },
+      { title: 'Hayır', value: false }
+    ],
+    initial: 0
   }
 ];
 
@@ -134,6 +144,19 @@ async function createProject() {
   console.log(chalk.green(`\n✨ "${answers.projectName}" projesi oluşturuluyor...\n`));
 
   createFolderStructure(projectPath, answers);
+
+  // Git initialization
+  if (answers.initGit) {
+    try {
+      const { execSync } = require('child_process');
+      execSync('git init', { cwd: projectPath, stdio: 'ignore' });
+      execSync('git add .', { cwd: projectPath, stdio: 'ignore' });
+      execSync('git commit -m "Initial commit from quick-next"', { cwd: projectPath, stdio: 'ignore' });
+      console.log(chalk.gray(`  ✓ Git repository başlatıldı`));
+    } catch (error) {
+      console.log(chalk.yellow(`  ⚠ Git başlatılamadı (git yüklü değil olabilir)`));
+    }
+  }
 
   console.log(chalk.green.bold('\n✅ Proje başarıyla oluşturuldu!\n'));
   console.log(chalk.cyan('Başlamak için:'));

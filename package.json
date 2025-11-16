@@ -1,6 +1,6 @@
 {
   "name": "quick-next",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Quick and customizable Next.js project scaffolding CLI tool with Turkish support",
   "main": "index.js",
   "bin": {
