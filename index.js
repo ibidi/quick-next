@@ -101,6 +101,16 @@ const questions = [
       { title: 'Hayır', value: false }
     ],
     initial: 0
+  },
+  {
+    type: 'select',
+    name: 'envExample',
+    message: '.env.example dosyası oluşturmak ister misin?',
+    choices: [
+      { title: 'Evet', value: true },
+      { title: 'Hayır', value: false }
+    ],
+    initial: 0
   }
 ];
 
@@ -204,6 +214,11 @@ function createFolderStructure(projectPath, config) {
   if (config.prettier) {
     createFile(projectPath, '.prettierrc', getPrettierConfig());
     createFile(projectPath, '.prettierignore', getPrettierIgnore());
+  }
+
+  if (config.envExample) {
+    createFile(projectPath, '.env.example', getEnvExample());
+    createFile(projectPath, '.env.local', getEnvLocal());
   }
 
   console.log(chalk.gray(`  ✓ Klasör yapısı oluşturuldu`));
@@ -726,12 +741,41 @@ function getPostcssConfig() {
 }
 
 function getGitignore() {
-  return `node_modules
+  return `# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# next.js
 .next
 out
-.env*.local
+build
+
+# production
+dist
+
+# misc
 .DS_Store
-*.log
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 `;
 }
 
@@ -881,6 +925,40 @@ dist
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+`;
+}
+
+function getEnvExample() {
+  return `# Next.js Environment Variables
+# Copy this file to .env.local and fill in your values
+
+# App
+NEXT_PUBLIC_APP_NAME=my-app
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# API
+# NEXT_PUBLIC_API_URL=https://api.example.com
+# API_SECRET_KEY=your-secret-key
+
+# Database (if needed)
+# DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+
+# Authentication (if needed)
+# NEXTAUTH_URL=http://localhost:3000
+# NEXTAUTH_SECRET=your-nextauth-secret
+
+# Third-party services
+# GOOGLE_CLIENT_ID=
+# GOOGLE_CLIENT_SECRET=
+`;
+}
+
+function getEnvLocal() {
+  return `# Local Environment Variables
+# This file is gitignored by default
+
+NEXT_PUBLIC_APP_NAME=my-app
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 `;
 }
 

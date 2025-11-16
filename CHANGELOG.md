@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] - 2024-11-16
+
+### Added
+- Environment variables support with `.env.example` and `.env.local` generation
+- Comprehensive `.gitignore` with all Next.js patterns
+- Pre-configured environment variable templates for common use cases
+
+### Changed
+- Enhanced `.gitignore` with better organization and comments
+- Improved project structure documentation
+
 ## [1.0.4] - 2024-11-16
 
 ### Added
