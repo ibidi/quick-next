@@ -1,0 +1,59 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.0.4] - 2024-11-16
+
+### Added
+- ESLint configuration option with Next.js and TypeScript support
+- Prettier integration with Tailwind CSS plugin support
+- Automatic ESLint + Prettier compatibility setup
+- `.prettierrc` and `.prettierignore` file generation
+- `.eslintrc.json` file generation with proper extends
+
+### Changed
+- Updated README with ESLint and Prettier features
+- Added new keywords to package.json (eslint, prettier, shadcn)
+
+## [1.0.3] - 2024-11-15
+
+### Added
+- Professional README with badges and bilingual content
+- Social media links (LinkedIn, Instagram, X/Twitter)
+- GitHub repository integration
+
+### Changed
+- Updated Next.js to version 16.0.3
+- Updated React to version 19.0.0
+- Improved documentation structure
+
+## [1.0.2] - 2024-11-15
+
+### Added
+- shadcn/ui integration support
+- Automatic `components.json` configuration
+- Dark mode support with CSS variables
+- `cn()` utility function for className merging
+- Tailwind CSS theme with shadcn/ui colors
+
+### Changed
+- Enhanced Tailwind configuration for shadcn/ui
+- Updated dependencies for shadcn/ui compatibility
+
+## [1.0.1] - 2024-11-15
+
+### Added
+- Initial shadcn/ui support (beta)
+
+## [1.0.0] - 2024-11-15
+
+### Added
+- Initial release
+- Next.js 14 project scaffolding
+- TypeScript/JavaScript support
+- App Router and Pages Router support
+- src/ folder option
+- Customizable folder structure
+- Multiple styling options (Tailwind CSS, CSS Modules, Styled Components, CSS)
+- Turkish language interface
+- Interactive CLI with prompts
