@@ -51,7 +51,10 @@ npx quick-next
 - 🎨 **Multiple Styling Options** - Tailwind CSS, CSS Modules, Styled Components, or plain CSS
 - 📁 **Customizable Structure** - Choose exactly which folders you need
 - 🌙 **Dark Mode Ready** - Built-in dark mode support with shadcn/ui
-- ✨ **ESLint & Prettier** - Code quality and formatting tools (New in v1.0.4!)
+- ✨ **ESLint & Prettier** - Code quality and formatting tools
+- 📦 **Package Manager Choice** - npm, yarn, pnpm, or bun support (New in v1.0.7!)
+- 🔧 **Environment Variables** - Pre-configured .env files
+- 🎯 **Git Integration** - Optional Git initialization with first commit
 - 🇹🇷 **Turkish Interface** - Native Turkish language support
 - 🔧 **Zero Configuration** - Works out of the box with sensible defaults
 - 📚 **Best Practices** - Follows Next.js and React best practices
@@ -120,6 +123,9 @@ $ npx quick-next
 ✔ shadcn/ui eklemek ister misin? › Evet (önerilen)
 ✔ ESLint konfigürasyonu eklemek ister misin? › Evet (önerilen)
 ✔ Prettier eklemek ister misin? › Evet (önerilen)
+✔ .env.example dosyası oluşturmak ister misin? › Evet
+✔ Git repository başlatmak ister misin? › Evet
+✔ Hangi paket yöneticisini kullanacaksın? › npm
 
 ✨ "my-awesome-app" projesi oluşturuluyor...
 
@@ -283,6 +289,9 @@ $ npx quick-next
 ✔ shadcn/ui eklemek ister misin? › Evet (önerilen)
 ✔ ESLint konfigürasyonu eklemek ister misin? › Evet (önerilen)
 ✔ Prettier eklemek ister misin? › Evet (önerilen)
+✔ .env.example dosyası oluşturmak ister misin? › Evet
+✔ Git repository başlatmak ister misin? › Evet
+✔ Hangi paket yöneticisini kullanacaksın? › npm
 
 ✨ "harika-projem" projesi oluşturuluyor...
 
