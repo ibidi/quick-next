@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.9] - 2024-11-16
+
+### Added
+- Project name validation (lowercase, numbers, hyphens, underscores only)
+- Duplicate folder check before creation
+- Clear screen on start for cleaner experience
+- Better error messages with helpful hints
+
+### Changed
+- Removed redundant folder existence checks
+- Improved validation feedback
+
 ## [1.0.8] - 2024-11-16
 
 ### Added
