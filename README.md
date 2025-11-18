@@ -45,6 +45,7 @@ npx quick-next
 ### ✨ Features
 
 - ⚡ **Lightning Fast** - Create production-ready Next.js projects in seconds
+- 🎨 **Project Templates** - Quick start with Minimal, Full Stack, or shadcn/ui presets (New in v1.1.0!)
 - 🎨 **shadcn/ui Integration** - Beautiful, accessible components out of the box
 - 📝 **TypeScript/JavaScript** - Choose your preferred language
 - 🎯 **App Router & Pages Router** - Support for both Next.js routing systems
@@ -52,9 +53,11 @@ npx quick-next
 - 📁 **Customizable Structure** - Choose exactly which folders you need
 - 🌙 **Dark Mode Ready** - Built-in dark mode support with shadcn/ui
 - ✨ **ESLint & Prettier** - Code quality and formatting tools
-- 📦 **Package Manager Choice** - npm, yarn, pnpm, or bun support (New in v1.0.7!)
+- 📦 **Package Manager Choice** - npm, yarn, pnpm, or bun support
 - 🔧 **Environment Variables** - Pre-configured .env files
 - 🎯 **Git Integration** - Optional Git initialization with first commit
+- 🎭 **Beautiful CLI** - Loading spinners, colors, and professional output
+- ✅ **Input Validation** - Smart validation with helpful error messages
 - 🇹🇷 **Turkish Interface** - Native Turkish language support
 - 🔧 **Zero Configuration** - Works out of the box with sensible defaults
 - 📚 **Best Practices** - Follows Next.js and React best practices
@@ -112,9 +115,12 @@ Browse all components at [ui.shadcn.com](https://ui.shadcn.com)
 ```bash
 $ npx quick-next
 
-🚀 Next.js Proje Oluşturucu
+🚀 quick-next
+Next.js projesi oluşturucu - v1.1.0
+──────────────────────────────────────────────────
 
 ✔ Proje adı nedir? … my-awesome-app
+✔ Hangi şablonu kullanmak istersin? › Full Stack (tüm özellikler)
 ✔ TypeScript kullanmak ister misin? › Evet
 ✔ src/ klasörü kullanmak ister misin? › Evet
 ✔ Hangi router yapısını kullanmak istersin? › App Router (önerilen)
@@ -278,9 +284,12 @@ Tüm komponentlere [ui.shadcn.com](https://ui.shadcn.com) adresinden göz atın.
 ```bash
 $ npx quick-next
 
-🚀 Next.js Proje Oluşturucu
+🚀 quick-next
+Next.js projesi oluşturucu - v1.1.0
+──────────────────────────────────────────────────
 
 ✔ Proje adı nedir? … harika-projem
+✔ Hangi şablonu kullanmak istersin? › Full Stack (tüm özellikler)
 ✔ TypeScript kullanmak ister misin? › Evet
 ✔ src/ klasörü kullanmak ister misin? › Evet
 ✔ Hangi router yapısını kullanmak istersin? › App Router (önerilen)
