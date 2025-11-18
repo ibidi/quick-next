@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.8] - 2024-11-16
+
+### Added
+- Beautiful loading spinners with ora
+- Professional CLI output with better formatting
+- Cancel handling with graceful exit
+- Error handling with visual feedback
+- Enhanced success messages with emojis and colors
+
+### Changed
+- Improved overall user experience
+- Better visual hierarchy in terminal output
+- More informative progress indicators
+
 ## [1.0.7] - 2024-11-16
 
 ### Added

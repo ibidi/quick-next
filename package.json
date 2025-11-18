@@ -1,6 +1,6 @@
 {
   "name": "quick-next",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Quick and customizable Next.js project scaffolding CLI tool with Turkish support",
   "main": "index.js",
   "bin": {
@@ -41,7 +41,8 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "prompts": "^2.4.2",
-    "chalk": "^4.1.2"
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "prompts": "^2.4.2"
   }
 }

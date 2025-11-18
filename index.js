@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const prompts = require('prompts');
 const chalk = require('chalk');
+const ora = require('ora');
 
 const questions = [
   {
@@ -137,9 +138,15 @@ const questions = [
 ];
 
 async function createProject() {
-  console.log(chalk.blue.bold('\n🚀 Next.js Proje Oluşturucu\n'));
+  console.log(chalk.blue.bold('\n🚀 quick-next'));
+  console.log(chalk.gray('Next.js projesi oluşturucu - v1.0.8\n'));
 
-  const answers = await prompts(questions);
+  const answers = await prompts(questions, {
+    onCancel: () => {
+      console.log(chalk.red('\n✖ İşlem iptal edildi'));
+      process.exit(0);
+    }
+  });
 
   if (!answers.projectName) {
     console.log(chalk.red('\n❌ İşlem iptal edildi'));
@@ -153,39 +160,57 @@ async function createProject() {
     process.exit(1);
   }
 
-  console.log(chalk.green(`\n✨ "${answers.projectName}" projesi oluşturuluyor...\n`));
+  console.log('');
+  const spinner = ora({
+    text: chalk.cyan(`"${answers.projectName}" projesi oluşturuluyor...`),
+    spinner: 'dots'
+  }).start();
 
-  createFolderStructure(projectPath, answers);
+  try {
+    createFolderStructure(projectPath, answers);
+    spinner.succeed(chalk.green('Proje dosyaları oluşturuldu'));
+  } catch (error) {
+    spinner.fail(chalk.red('Proje oluşturulurken hata oluştu'));
+    console.error(error);
+    process.exit(1);
+  }
 
   // Git initialization
   if (answers.initGit) {
+    const gitSpinner = ora('Git repository başlatılıyor...').start();
     try {
       const { execSync } = require('child_process');
       execSync('git init', { cwd: projectPath, stdio: 'ignore' });
       execSync('git add .', { cwd: projectPath, stdio: 'ignore' });
       execSync('git commit -m "Initial commit from quick-next"', { cwd: projectPath, stdio: 'ignore' });
-      console.log(chalk.gray(`  ✓ Git repository başlatıldı`));
+      gitSpinner.succeed(chalk.green('Git repository başlatıldı'));
     } catch (error) {
-      console.log(chalk.yellow(`  ⚠ Git başlatılamadı (git yüklü değil olabilir)`));
+      gitSpinner.warn(chalk.yellow('Git başlatılamadı (git yüklü değil olabilir)'));
     }
   }
 
-  console.log(chalk.green.bold('\n✅ Proje başarıyla oluşturuldu!\n'));
-  console.log(chalk.cyan('Başlamak için:'));
-  console.log(chalk.white(`  cd ${answers.projectName}`));
+  console.log('');
+  console.log(chalk.green.bold('✓ Proje başarıyla oluşturuldu!\n'));
+  
+  console.log(chalk.cyan.bold('Başlamak için:\n'));
+  console.log(chalk.white(`  ${chalk.cyan('cd')} ${answers.projectName}`));
   
   const pm = answers.packageManager || 'npm';
   const installCmd = pm === 'npm' ? 'npm install' : pm === 'yarn' ? 'yarn' : pm === 'pnpm' ? 'pnpm install' : 'bun install';
   const devCmd = pm === 'npm' ? 'npm run dev' : pm === 'yarn' ? 'yarn dev' : pm === 'pnpm' ? 'pnpm dev' : 'bun dev';
   
-  console.log(chalk.white(`  ${installCmd}`));
-  console.log(chalk.white(`  ${devCmd}\n`));
+  console.log(chalk.white(`  ${chalk.cyan(installCmd)}`));
+  console.log(chalk.white(`  ${chalk.cyan(devCmd)}\n`));
   
   if (answers.shadcn) {
-    console.log(chalk.cyan('shadcn/ui komponent eklemek için:'));
-    console.log(chalk.white('  npx shadcn-ui@latest add button'));
-    console.log(chalk.gray('  Daha fazla: https://ui.shadcn.com\n'));
+    console.log(chalk.cyan.bold('shadcn/ui komponentleri:\n'));
+    console.log(chalk.white(`  ${chalk.cyan('npx shadcn-ui@latest add button')}`));
+    console.log(chalk.gray(`  Tüm komponentler: ${chalk.underline('https://ui.shadcn.com')}\n`));
   }
+  
+  console.log(chalk.gray('─'.repeat(50)));
+  console.log(chalk.gray(`Teşekkürler! ${chalk.cyan('quick-next')} kullandığınız için ❤️`));
+  console.log(chalk.gray('─'.repeat(50) + '\n'));
 }
 
 function createFolderStructure(projectPath, config) {
@@ -261,7 +286,7 @@ function createFolderStructure(projectPath, config) {
     createFile(projectPath, '.env.local', getEnvLocal());
   }
 
-  console.log(chalk.gray(`  ✓ Klasör yapısı oluşturuldu`));
+
 }
 
 function createFile(dir, filename, content) {
