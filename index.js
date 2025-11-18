@@ -25,6 +25,18 @@ const questions = [
   },
   {
     type: 'select',
+    name: 'template',
+    message: 'Hangi şablonu kullanmak istersin?',
+    choices: [
+      { title: 'Özel (tüm seçenekleri kendin belirle)', value: 'custom' },
+      { title: 'Minimal (sadece temel yapı)', value: 'minimal' },
+      { title: 'Full Stack (tüm özellikler)', value: 'fullstack' },
+      { title: 'shadcn/ui Starter (UI odaklı)', value: 'shadcn' }
+    ],
+    initial: 0
+  },
+  {
+    type: (prev) => prev === 'custom' ? 'select' : null,
     name: 'typescript',
     message: 'TypeScript kullanmak ister misin?',
     choices: [
@@ -34,7 +46,7 @@ const questions = [
     initial: 0
   },
   {
-    type: 'select',
+    type: (prev, values) => values.template === 'custom' ? 'select' : null,
     name: 'srcFolder',
     message: 'src/ klasörü kullanmak ister misin?',
     choices: [
@@ -44,7 +56,7 @@ const questions = [
     initial: 0
   },
   {
-    type: 'select',
+    type: (prev, values) => values.template === 'custom' ? 'select' : null,
     name: 'appRouter',
     message: 'Hangi router yapısını kullanmak istersin?',
     choices: [
@@ -54,7 +66,7 @@ const questions = [
     initial: 0
   },
   {
-    type: 'multiselect',
+    type: (prev, values) => values.template === 'custom' ? 'multiselect' : null,
     name: 'features',
     message: 'Hangi klasörleri eklemek istersin?',
     choices: [
@@ -72,7 +84,7 @@ const questions = [
     hint: 'Boşluk ile seç/kaldır, Enter ile devam et'
   },
   {
-    type: 'select',
+    type: (prev, values) => values.template === 'custom' ? 'select' : null,
     name: 'styling',
     message: 'Hangi styling çözümünü kullanacaksın?',
     choices: [
@@ -84,7 +96,7 @@ const questions = [
     initial: 0
   },
   {
-    type: (prev, values) => values.styling === 'tailwind' ? 'select' : null,
+    type: (prev, values) => (values.template === 'custom' && values.styling === 'tailwind') ? 'select' : null,
     name: 'shadcn',
     message: 'shadcn/ui eklemek ister misin?',
     choices: [
@@ -94,7 +106,7 @@ const questions = [
     initial: 0
   },
   {
-    type: 'select',
+    type: (prev, values) => values.template === 'custom' ? 'select' : null,
     name: 'eslint',
     message: 'ESLint konfigürasyonu eklemek ister misin?',
     choices: [
@@ -104,7 +116,7 @@ const questions = [
     initial: 0
   },
   {
-    type: (prev) => prev ? 'select' : null,
+    type: (prev, values) => (values.template === 'custom' && values.eslint) ? 'select' : null,
     name: 'prettier',
     message: 'Prettier eklemek ister misin?',
     choices: [
@@ -114,7 +126,7 @@ const questions = [
     initial: 0
   },
   {
-    type: 'select',
+    type: (prev, values) => values.template === 'custom' ? 'select' : null,
     name: 'envExample',
     message: '.env.example dosyası oluşturmak ister misin?',
     choices: [
@@ -124,7 +136,7 @@ const questions = [
     initial: 0
   },
   {
-    type: 'select',
+    type: (prev, values) => values.template === 'custom' ? 'select' : null,
     name: 'initGit',
     message: 'Git repository başlatmak ister misin?',
     choices: [
@@ -150,7 +162,7 @@ const questions = [
 async function createProject() {
   console.clear();
   console.log(chalk.blue.bold('\n🚀 quick-next'));
-  console.log(chalk.gray('Next.js projesi oluşturucu - v1.0.9'));
+  console.log(chalk.gray('Next.js projesi oluşturucu - v1.1.0'));
   console.log(chalk.gray('─'.repeat(50) + '\n'));
 
   const answers = await prompts(questions, {
@@ -159,6 +171,11 @@ async function createProject() {
       process.exit(0);
     }
   });
+
+  // Apply template presets
+  if (answers.template !== 'custom') {
+    applyTemplate(answers);
+  }
 
   const projectPath = path.join(process.cwd(), answers.projectName);
 
@@ -1027,6 +1044,52 @@ function getEnvLocal() {
 NEXT_PUBLIC_APP_NAME=my-app
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 `;
+}
+
+function applyTemplate(answers) {
+  const templates = {
+    minimal: {
+      typescript: false,
+      srcFolder: false,
+      appRouter: 'app',
+      features: ['components'],
+      styling: 'css',
+      shadcn: false,
+      eslint: false,
+      prettier: false,
+      envExample: false,
+      initGit: true
+    },
+    fullstack: {
+      typescript: true,
+      srcFolder: true,
+      appRouter: 'app',
+      features: ['components', 'lib', 'hooks', 'utils', 'types', 'api', 'config'],
+      styling: 'tailwind',
+      shadcn: true,
+      eslint: true,
+      prettier: true,
+      envExample: true,
+      initGit: true
+    },
+    shadcn: {
+      typescript: true,
+      srcFolder: true,
+      appRouter: 'app',
+      features: ['components', 'lib', 'hooks', 'utils'],
+      styling: 'tailwind',
+      shadcn: true,
+      eslint: true,
+      prettier: true,
+      envExample: false,
+      initGit: true
+    }
+  };
+
+  const template = templates[answers.template];
+  if (template) {
+    Object.assign(answers, template);
+  }
 }
 
 createProject().catch(console.error);

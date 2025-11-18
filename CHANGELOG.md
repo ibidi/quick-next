@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2024-11-16
+
+### Added
+- 🎨 **Project Templates**: Quick start with pre-configured setups
+  - **Minimal**: Basic Next.js structure
+  - **Full Stack**: All features enabled (TypeScript, shadcn/ui, ESLint, Prettier, etc.)
+  - **shadcn/ui Starter**: UI-focused setup with shadcn/ui
+  - **Custom**: Full control over all options
+- Smart conditional prompts based on template selection
+- Template presets for faster project creation
+
+### Changed
+- Reorganized question flow for better UX
+- Questions now adapt based on template choice
+- Improved CLI version display
+
 ## [1.0.9] - 2024-11-16
 
 ### Added
