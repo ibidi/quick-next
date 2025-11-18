@@ -11,7 +11,17 @@ const questions = [
     type: 'text',
     name: 'projectName',
     message: 'Proje adı nedir?',
-    initial: 'my-next-app'
+    initial: 'my-next-app',
+    validate: (value) => {
+      if (!value) return 'Proje adı gerekli!';
+      if (!/^[a-z0-9-_]+$/.test(value)) {
+        return 'Proje adı sadece küçük harf, rakam, tire ve alt çizgi içerebilir';
+      }
+      if (fs.existsSync(path.join(process.cwd(), value))) {
+        return `"${value}" klasörü zaten mevcut!`;
+      }
+      return true;
+    }
   },
   {
     type: 'select',
@@ -138,8 +148,10 @@ const questions = [
 ];
 
 async function createProject() {
+  console.clear();
   console.log(chalk.blue.bold('\n🚀 quick-next'));
-  console.log(chalk.gray('Next.js projesi oluşturucu - v1.0.8\n'));
+  console.log(chalk.gray('Next.js projesi oluşturucu - v1.0.9'));
+  console.log(chalk.gray('─'.repeat(50) + '\n'));
 
   const answers = await prompts(questions, {
     onCancel: () => {
@@ -148,17 +160,7 @@ async function createProject() {
     }
   });
 
-  if (!answers.projectName) {
-    console.log(chalk.red('\n❌ İşlem iptal edildi'));
-    process.exit(1);
-  }
-
   const projectPath = path.join(process.cwd(), answers.projectName);
-
-  if (fs.existsSync(projectPath)) {
-    console.log(chalk.red(`\n❌ "${answers.projectName}" klasörü zaten mevcut!`));
-    process.exit(1);
-  }
 
   console.log('');
   const spinner = ora({
